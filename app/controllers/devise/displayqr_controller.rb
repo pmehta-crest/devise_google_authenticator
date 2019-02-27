@@ -2,9 +2,9 @@ require 'devise/version'
 
 class Devise::DisplayqrController < DeviseController
   if Rails.version >= '4'
-    prepend_before_action :authenticate_scope!, :only => [:show, :update, :refresh]
+    prepend_before_action :authenticate_scope!, :only => %i[show update refresh]
   else
-    prepend_before_filter :authenticate_scope!, :only => [:show, :update, :refresh]
+    prepend_before_filter :authenticate_scope!, :only => %i[show update refresh]
   end
 
   include Devise::Controllers::Helpers
@@ -46,7 +46,7 @@ class Devise::DisplayqrController < DeviseController
       resource.send(:assign_auth_secret)
       resource.save
       set_flash_message :notice, :newtoken
-      sign_in scope, resource, :bypass => true
+      sign_in scope, resource, bypass: true
       redirect_to [resource_name, :displayqr]
     else
       redirect_to :root
