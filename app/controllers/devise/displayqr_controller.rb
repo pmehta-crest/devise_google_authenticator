@@ -2,9 +2,9 @@ require 'devise/version'
 
 class Devise::DisplayqrController < DeviseController
   if Rails.version >= '4'
-    prepend_before_action :authenticate_scope!, :only => %i[show update refresh]
+    prepend_before_action :authenticate_scope!, only: %i[show update refresh]
   else
-    prepend_before_filter :authenticate_scope!, :only => %i[show update refresh]
+    prepend_before_filter :authenticate_scope!, only: %i[show update refresh]
   end
 
   include Devise::Controllers::Helpers
