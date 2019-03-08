@@ -27,7 +27,11 @@ class Devise::DisplayqrController < DeviseController
 
     if resource.set_gauth_enabled(params[resource_name]['gauth_enabled'])
       set_flash_message :notice, (resource.gauth_enabled? ? :enabled : :disabled)
-      sign_in scope, resource, :bypass => true
+      if Gem::Version.new(Devise::VERSION) < Gem::Version.new('4.2.0')
+        sign_in scope, resource, bypass: true
+      else
+        bypass_sign_in resource, scope: scope
+      end
       redirect_to stored_location_for(scope) || :root
     else
       render :show
