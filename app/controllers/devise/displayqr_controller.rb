@@ -32,7 +32,8 @@ class Devise::DisplayqrController < DeviseController
       else
         bypass_sign_in resource, scope: scope
       end
-      redirect_to stored_location_for(scope) || :root
+
+      respond_with resource, location: after_sign_in_path_for(resource)
     else
       render :show
     end
@@ -51,6 +52,7 @@ class Devise::DisplayqrController < DeviseController
   end
 
   private
+
   def scope
     resource_name.to_sym
   end
@@ -62,7 +64,10 @@ class Devise::DisplayqrController < DeviseController
 
   # 7/2/15 - Unsure if this is used anymore - @xntrik
   def resource_params
-    return params.require(resource_name.to_sym).permit(:gauth_enabled) if strong_parameters_enabled?
+    if strong_parameters_enabled?
+      return params.require(resource_name.to_sym).permit(:gauth_enabled)
+    end
+
     params
   end
 
