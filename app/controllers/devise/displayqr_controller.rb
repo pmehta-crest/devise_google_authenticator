@@ -58,7 +58,8 @@ class Devise::DisplayqrController < DeviseController
   end
 
   def authenticate_scope!
-    send(:"authenticate_#{resource_name}!")
+    # https://github.com/AsteriskLabs/devise_google_authenticator/issues/29
+    send(:"authenticate_#{resource_name}!", force: true)
     self.resource = send("current_#{resource_name}")
   end
 
