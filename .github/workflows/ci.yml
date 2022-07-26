@@ -43,4 +43,4 @@ jobs:
     - name: Earthly version
       run: earthly --version
     - name: Run build
-      run: earthly --ci --allow-privileged +rspec --EARTHLY_RUBY_VERSION=$EARTHLY_RUBY_VERSION --EARTHLY_RAILS_VERSION=$EARTHLY_RAILS_VERSION --EARTHLY_DEVISE_VERSION=$EARTHLY_DEVISE_VERSION
+      run: earthly --ci --allow-privileged +test --EARTHLY_RUBY_VERSION=$EARTHLY_RUBY_VERSION --EARTHLY_RAILS_VERSION=$EARTHLY_RAILS_VERSION --EARTHLY_DEVISE_VERSION=$EARTHLY_DEVISE_VERSION
