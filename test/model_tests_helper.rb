@@ -1,5 +1,4 @@
 class ActiveSupport::TestCase
- 
   # Helpers for creating new users
   #
   def generate_unique_email
@@ -19,5 +18,4 @@ class ActiveSupport::TestCase
     user.save
     user
   end
-
 end

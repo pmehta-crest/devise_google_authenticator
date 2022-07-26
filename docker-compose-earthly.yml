@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  gem:
+    build: .
+    environment:
+      - EARTHLY_DEVISE_VERSION=${EARTHLY_DEVISE_VERSION}
+      - EARTHLY_RAILS_VERSION=${EARTHLY_RAILS_VERSION}
+      - EARTHLY_RUBY_VERSION=${EARTHLY_RUBY_VERSION}
+    image: pharmony/devise_google_authenticator:latest

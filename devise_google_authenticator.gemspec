@@ -1,34 +1,39 @@
+# frozen_string_literal: true
+
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name = "devise_google_authenticator"
-  s.version = "0.3.16"
-  s.authors = ["Christian Frichot"]
-  s.date = "2015-02-08"
-  s.description = "Devise Google Authenticator Extension, for adding Google's OTP to your Rails apps!"
-  s.email = "xntrik@gmail.com"
+  s.name = 'devise_google_authenticator'
+  s.version = '0.3.16'
+  s.authors = ['Christian Frichot']
+  s.date = '2015-02-08'
+  s.description = 'Devise Google Authenticator Extension, for adding ' \
+                  "Google's OTP to your Rails apps!"
+  s.email = 'xntrik@gmail.com'
   s.extra_rdoc_files = [
-    "LICENSE.txt",
-    "README.rdoc"
+    'LICENSE.txt',
+    'README.rdoc'
   ]
-  s.files = Dir["{app,config,lib}/**/*"] + %w[LICENSE.txt README.rdoc]
-  s.homepage = "http://github.com/AsteriskLabs/devise_google_authenticator"
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.summary = "Devise Google Authenticator Extension"
+  s.files = Dir['{app,config,lib}/**/*'] + %w[LICENSE.txt README.rdoc]
+  s.homepage = 'http://github.com/AsteriskLabs/devise_google_authenticator'
+  s.licenses = ['MIT']
+  s.require_paths = ['lib']
+  s.summary = 'Devise Google Authenticator Extension'
 
-  s.required_ruby_version = '>= 1.9.2'
-  # s.required_rubygems_version = '>= 2.1.0'
+  s.required_ruby_version = ">= #{RUBY_VERSION}"
 
-  {
-    # 'railties' => '~> 3.0',
-    # removed the following to try and get past this bundle update not finding compatible versions for gem issue
-    # 'actionmailer' => '>= 3.0', 
-    #'actionmailer' => '~> 3.2',# '>= 3.2.12',
-    'devise' => '~> 3.2',
-    'rotp'   => '~> 1.6'
-  }.each do |lib, version|
-    s.add_runtime_dependency(lib, *version)
-  end
+  devise_version = ENV.fetch('EARTHLY_DEVISE_VERSION', '3.2')
+  rails_min_version = ENV.fetch('EARTHLY_RAILS_VERSION', '3.2.22.5')
+  rails_max_version = (rails_min_version.split('.').first.to_i + 1).to_s
 
+  puts "Building gem dependencies using Rails '>= #{rails_min_version}', " \
+       "'< #{rails_max_version}' and devise '~> #{devise_version}' with Ruby " \
+       "#{RUBY_VERSION} ..."
+
+  s.add_runtime_dependency 'actionmailer', ">= #{rails_min_version}",
+                                           "< #{rails_max_version}"
+  s.add_runtime_dependency 'devise', "~> #{devise_version}"
+  s.add_runtime_dependency 'railties', ">= #{rails_min_version}",
+                                       "< #{rails_max_version}"
+  s.add_runtime_dependency 'rotp', '~> 1.6'
 end

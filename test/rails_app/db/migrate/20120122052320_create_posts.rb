@@ -4,7 +4,11 @@ class CreatePosts < ActiveRecord::Migration
       t.string :title
       t.text :body
 
-      t.timestamps
+      if Rails.version < '5'
+        t.timestamps
+      else
+        t.timestamps null: true
+      end
     end
   end
 end
