@@ -1,4 +1,5 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
+
 require 'test_helper'
 require 'rails/generators'
 require 'generators/devise_google_authenticator/devise_google_authenticator_generator'
@@ -16,5 +17,4 @@ class GeneratorsTest < ActiveSupport::TestCase
     assert @output.match(%r^(inject|insert).+config/initializers/devise\.rb\n^)
     assert @output.match(%r|create.+config/locales/devise\.google_authenticator\.en\.yml\n|)
   end
-
 end

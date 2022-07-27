@@ -1,3 +1,5 @@
+require 'devise_google_authenticatable/controllers/helpers'
+
 module DeviseGoogleAuthenticator
   class Engine < ::Rails::Engine # :nodoc:
     if Rails.version > '5'

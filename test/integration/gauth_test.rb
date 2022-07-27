@@ -2,8 +2,6 @@ require 'test_helper'
 require 'integration_tests_helper'
 
 class InvitationTest < ActionDispatch::IntegrationTest
-  include ActionController::IntegrationTest
-
   self.use_transactional_fixtures = false
 
   def teardown

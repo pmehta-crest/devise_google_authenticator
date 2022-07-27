@@ -8,7 +8,11 @@ include Devise::TestHelpers
 require "orm/#{DEVISE_ORM}"
 require 'rails/test_help'
 require 'capybara/rails'
-require 'capybara-screenshot/minitest'
+if Rails.version < '4'
+  require 'capybara-screenshot/testunit'
+else
+  require 'capybara-screenshot/minitest'
+end
 require 'timecop'
 
 I18n.load_path << File.expand_path("../support/locale/en.yml", __FILE__) if DEVISE_ORM == :mongoid

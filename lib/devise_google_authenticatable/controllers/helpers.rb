@@ -4,8 +4,13 @@ module DeviseGoogleAuthenticator
       extend ActiveSupport::Concern
 
       included do
-        before_action :check_request_and_redirect_to_check_totp,
-                      if: :user_signing_in?
+        if Rails.version >= '4'
+          before_action :check_request_and_redirect_to_check_totp,
+                         if: :user_signing_in?
+        else
+          before_filter :check_request_and_redirect_to_check_totp,
+                         if: :user_signing_in?
+        end
 
         define_method :checkga_resource_path_name do |resource, id|
           name = resource.class.name.singularize.underscore

@@ -10,9 +10,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # Minimal compatible versions
           - ruby: 2.2
-            rails: 4
-            devise: 3.5.10
+            rails: 3.2.22.5
+            devise: 3.2
+          # Highest compatible versions
           - ruby: 2.2
             rails: 4.2.11.3
             devise: 3.4.0

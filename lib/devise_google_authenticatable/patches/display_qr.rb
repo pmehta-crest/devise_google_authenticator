@@ -20,7 +20,7 @@ module DeviseGoogleAuthenticator::Patches
               if resource.class.ga_bypass_signup
                 respond_with resource, location: after_sign_up_path_for(resource)
               else
-                respond_with resource, :location => {:controller => 'displayqr', :action => 'show'}
+                respond_with resource, location: { controller: 'displayqr', action: 'show' }
               end
             else
               respond_with resource, location: after_sign_up_path_for(resource)
