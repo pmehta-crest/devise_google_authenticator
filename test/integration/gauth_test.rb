@@ -2,7 +2,11 @@ require 'test_helper'
 require 'integration_tests_helper'
 
 class InvitationTest < ActionDispatch::IntegrationTest
-  self.use_transactional_fixtures = false
+  if Rails.version >= '5'
+    self.use_transactional_tests = false
+  else
+    self.use_transactional_fixtures = false
+  end
 
   def teardown
     Capybara.reset_sessions!

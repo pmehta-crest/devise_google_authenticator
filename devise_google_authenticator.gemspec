@@ -27,14 +27,14 @@ Gem::Specification.new do |s|
   rails_min_version = ENV.fetch('EARTHLY_RAILS_VERSION', '3.2.22.5')
   rails_max_version = (rails_min_version.split('.').first.to_i + 1).to_s
 
-  puts "Building gem dependencies using Rails '>= #{rails_min_version}', " \
+  puts "Building gem dependencies using Rails '~> #{rails_min_version}', " \
        "'< #{rails_max_version}' and devise '~> #{devise_version}' with Ruby " \
        "'>= #{ruby_version}' (Current version: #{RUBY_VERSION}) ..."
 
-  s.add_runtime_dependency 'actionmailer', ">= #{rails_min_version}",
+  s.add_runtime_dependency 'actionmailer', "~> #{rails_min_version}",
                                            "< #{rails_max_version}"
   s.add_runtime_dependency 'devise', "~> #{devise_version}"
-  s.add_runtime_dependency 'railties', ">= #{rails_min_version}",
+  s.add_runtime_dependency 'railties', "~> #{rails_min_version}",
                                        "< #{rails_max_version}"
   s.add_runtime_dependency 'rotp', '~> 1.6'
 end

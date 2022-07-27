@@ -4,7 +4,13 @@ DEVISE_ORM = (ENV["DEVISE_ORM"] || :active_record).to_sym
 $:.unshift File.dirname(__FILE__)
 puts "\n==> Devise.orm = #{DEVISE_ORM.inspect}"
 require "rails_app/config/environment"
-include Devise::TestHelpers
+
+if Gem::Version.new(Devise::VERSION) >= Gem::Version.new('4.2.0')
+  # include Devise::Test::ControllerHelpers
+else
+  include Devise::TestHelpers
+end
+
 require "orm/#{DEVISE_ORM}"
 require 'rails/test_help'
 require 'capybara/rails'
@@ -24,5 +30,9 @@ class ActionDispatch::IntegrationTest
 end
 
 class ActionController::TestCase
-  include Devise::TestHelpers
+  if Gem::Version.new(Devise::VERSION) >= Gem::Version.new('4.2.0')
+    include Devise::Test::ControllerHelpers
+  else
+    include Devise::TestHelpers
+  end
 end

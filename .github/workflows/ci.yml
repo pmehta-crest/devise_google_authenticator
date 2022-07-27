@@ -14,10 +14,32 @@ jobs:
           - ruby: 2.2
             rails: 3.2.22.5
             devise: 3.2
-          # Highest compatible versions
+
+          #
+          # Rails 4.x branch
+          #
+
+          # Rails 4 compatible versions
           - ruby: 2.2
             rails: 4.2.11.3
             devise: 3.5.10
+
+          #
+          # Rails 5.x branch
+          #
+
+          # Rails 5.0 compatible versions
+          - ruby: 2.4
+            rails: 5.0.7.2
+            devise: 4.8.1
+          # Rails 5.1 compatible versions
+          - ruby: 2.5
+            rails: 5.1.7
+            devise: 4.8.1
+          # Rails 5.2 compatible versions
+          - ruby: 2.5
+            rails: 5.2.8.1
+            devise: 4.8.1
     runs-on: ubuntu-latest
     name: RSpec suite (Ruby ${{ matrix.ruby }}/Rails ${{ matrix.rails }}/Devise ${{ matrix.devise }})
     env:
