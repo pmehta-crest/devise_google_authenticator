@@ -56,7 +56,12 @@ class ModelsTest < ActiveSupport::TestCase
   end
 
   test 'google_authenticatable attributes' do
-    assert_equal 'f', User.new.gauth_enabled
+    if Rails.version >= '5.2'
+      assert_equal 0, User.new.gauth_enabled
+    else
+      assert_equal 'f', User.new.gauth_enabled
+    end
+
     assert_nil User.new.gauth_tmp
     assert_nil User.new.gauth_tmp_datetime
   end
