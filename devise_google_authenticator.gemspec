@@ -20,7 +20,8 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.summary = 'Devise Google Authenticator Extension'
 
-  s.required_ruby_version = ">= #{RUBY_VERSION}"
+  ruby_version = ENV.fetch('EARTHLY_RUBY_VERSION', '2.2')
+  s.required_ruby_version = ">= #{ruby_version}"
 
   devise_version = ENV.fetch('EARTHLY_DEVISE_VERSION', '3.2')
   rails_min_version = ENV.fetch('EARTHLY_RAILS_VERSION', '3.2.22.5')
@@ -28,7 +29,7 @@ Gem::Specification.new do |s|
 
   puts "Building gem dependencies using Rails '>= #{rails_min_version}', " \
        "'< #{rails_max_version}' and devise '~> #{devise_version}' with Ruby " \
-       "#{RUBY_VERSION} ..."
+       "'>= #{ruby_version}' (Current version: #{RUBY_VERSION}) ..."
 
   s.add_runtime_dependency 'actionmailer', ">= #{rails_min_version}",
                                            "< #{rails_max_version}"

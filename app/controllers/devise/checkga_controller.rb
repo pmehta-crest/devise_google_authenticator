@@ -1,6 +1,11 @@
 class Devise::CheckgaController < Devise::SessionsController
-  prepend_before_filter :devise_resource, :only => [:show]
-  prepend_before_filter :require_no_authentication, :only => [ :show, :update ]
+  if Rails.version >= '4'
+    prepend_before_action :devise_resource, :only => [:show]
+    prepend_before_action :require_no_authentication, :only => [ :show, :update ]
+  else
+    prepend_before_filter :devise_resource, :only => [:show]
+    prepend_before_filter :require_no_authentication, :only => [ :show, :update ]
+  end
 
   include Devise::Controllers::Helpers
 

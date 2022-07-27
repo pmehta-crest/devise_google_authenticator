@@ -1,6 +1,6 @@
 # Devise Google Authenticator
 
-This is a devise[https://github.com/plataformatec/devise] extension to allow your app to utilise Google Authenticator[http://code.google.com/p/google-authenticator/] for Time-based One Time Passwords (TOTP).
+This is a (devise)[https://github.com/plataformatec/devise] extension to allow your app to utilise (Google Authenticator)[http://code.google.com/p/google-authenticator/] for Time-based One Time Passwords (TOTP).
 
 The current version of this gem support Rails 4.
 
@@ -34,7 +34,7 @@ rails g devise MODEL
 Configure your app for authorisation, edit your Controller and add this before_filter:
 
 ```ruby
-before_filter :authenticate_user!
+before_action :authenticate_user!
 ```
 
 Make sure your "root" route is configured in config/routes.rb

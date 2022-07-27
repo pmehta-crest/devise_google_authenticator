@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery
-  before_filter :authenticate_user!
+  if Rails.version >= '4'
+    before_action :authenticate_user!
+  else
+    before_filter :authenticate_user!
+  end
 end
