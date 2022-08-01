@@ -29,12 +29,12 @@ module Devise # :nodoc:
         end
 
         def set_gauth_enabled(param)
-          update_attributes(gauth_enabled: param)
+          update(gauth_enabled: param)
         end
 
         def assign_tmp
-          update_attributes(gauth_tmp: ROTP::Base32.random_base32(32),
-                            gauth_tmp_datetime: Time.now)
+          update(gauth_tmp: ROTP::Base32.random_base32(32),
+                 gauth_tmp_datetime: Time.now)
           gauth_tmp
         end
 
